@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import Cita from '../components/cita'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </a>
       </header>
     </div>
+// No se no anda y no entiendo   <Cita></Cita>
   );
 }
 
