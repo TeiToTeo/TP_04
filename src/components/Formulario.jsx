@@ -1,8 +1,10 @@
 
 
-const Formulario = () => {
+const Formulario = (props) => {
     return(
-        <h3>sdasd</h3>
+        <div>
+            <label>{props.name1}</label>
+        </div>
     );
 }
 export default Formulario;
