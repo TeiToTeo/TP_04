@@ -2,6 +2,7 @@
 import './App.css';
 import Cita from './components/Cita'
 import Formulario from './components/Formulario';
+import FormF from './components/FormF'
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
                 <Formulario name1="Sintomas" />
                 <textarea name="sintomas" class="u-full-width" />
                 <button type="submit" class="u-full-width button-primary">Agregar Cita</button>
+                <FormF/>
               </div>
               <div class="one-half column">
                   <h2>Administra tus citas</h2>
