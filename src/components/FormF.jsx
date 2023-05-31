@@ -1,30 +1,33 @@
 import React, { useState } from "react";
 
-const Soplon = () => {
-  const [texto, setTexto] = useState("");
+const Formu = () => {
+  const [texto, setTexto] = useState({
+    nombre: null,
+    dueño: null,
+    fecha: null,
+    hora: null,
+    sintomas: null
+  });
 
   const handleChange = (e) => {
-    setTexto(e.target.value);
+    setTexto({...texto, [e.target.name]: e.target.value});
+  };
+
+  const handleSubmit = (e) => {
+    setTexto({...texto, [e.target.name]: e.target.value});
   };
 
   return (
     <>
-      <input type="text" onChange={handleChange} />
-      <span>{texto}</span>
-      poner asi todo
-      <Formulario name1="Nombre Mascota" />
-      <input type="text" class="u-full-width" placeholder="Nombre Mascota" value="" />
-      <Formulario name1="Nombre Dueño" />
-      <input type="text" class="u-full-width" placeholder="Nombre Dueño" value="" />
-      <Formulario name1="Fecha" />
-      <input type="date" name="fecha" class="u-full-width" value="" />
-      <Formulario name1="Hora" />
-      <input type="time" name="hora" class="u-full-width" value="" />
-      <Formulario name1="Sintomas" />
-      <textarea name="sintomas" class="u-full-width" />
-      <button type="submit" class="u-full-width button-primary">Agregar Cita</button>
+      <span>{texto && JSON.stringify(texto)}</span>
+      <input type="text" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange} name="nombre"/>
+      <input type="text" class="u-full-width" placeholder="Nombre Dueño" onChange={handleChange} name="dueño"/>
+      <input type="date" class="u-full-width" onChange={handleChange} name="fecha"/>
+      <input type="time"  class="u-full-width"  onChange={handleChange} name="hora"/>
+      <textarea  class="u-full-width" onChange={handleChange} name="sintomas"/>
+      <button type="submit" class="u-full-width button-primary" onChange={handleSubmit} >Agregar Cita</button >
     </>
   );
 };
 
-export default Soplon;
+export default Formu;
