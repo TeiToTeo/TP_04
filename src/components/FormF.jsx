@@ -19,13 +19,15 @@ const Formu = () => {
 
   return (
     <>
+      <form onSubmit={handleSubmit}>
       <span>{texto && JSON.stringify(texto)}</span>
       <input type="text" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange} name="nombre"/>
       <input type="text" class="u-full-width" placeholder="Nombre Dueño" onChange={handleChange} name="dueño"/>
       <input type="date" class="u-full-width" onChange={handleChange} name="fecha"/>
       <input type="time"  class="u-full-width"  onChange={handleChange} name="hora"/>
       <textarea  class="u-full-width" onChange={handleChange} name="sintomas"/>
-      <button type="submit" class="u-full-width button-primary" onChange={handleSubmit} >Agregar Cita</button >
+      <button type="submit" class="u-full-width button-primary">Agregar Cita</button >
+      </form>
     </>
   );
 };
