@@ -1,26 +1,24 @@
 import React, { useState } from "react";
 
-const Formu = () => {
-  const [texto, setTexto] = useState({
-    nombre: null,
-    dueño: null,
-    fecha: null,
-    hora: null,
-    sintomas: null
-  });
 
-  const handleChange = (e) => {
-    setTexto({...texto, [e.target.name]: e.target.value});
-  };
+const FormF = ({ submit }) => {
 
-  const handleSubmit = (e) => {
-    setTexto({...texto, [e.target.name]: e.target.value});
-  };
+  const [cita, setCita] = useState({})
+
+  const handleChange = e => {
+        setCita({...cita, [e.target.name]: e.target.value})
+        console.log(cita)
+    }
+
+  const handleSubmit = e => {
+        e.preventDefault()
+        submit(cita)
+    }
+
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-      <span>{texto && JSON.stringify(texto)}</span>
       <input type="text" class="u-full-width" placeholder="Nombre Mascota" onChange={handleChange} name="nombre"/>
       <input type="text" class="u-full-width" placeholder="Nombre Dueño" onChange={handleChange} name="dueño"/>
       <input type="date" class="u-full-width" onChange={handleChange} name="fecha"/>
@@ -30,6 +28,6 @@ const Formu = () => {
       </form>
     </>
   );
-};
+  }
 
-export default Formu;
+export default FormF;

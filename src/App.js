@@ -1,43 +1,57 @@
-//import logo from './logo.svg';
 import './App.css';
 import Cita from './components/Cita'
 // import Formulario from './components/Formulario';
 import FormF from './components/FormF'
+import { useState } from 'react'
 
 function App() {
+  const [listaCitas, setListaCitas] = useState([{
+    mascota: "Blacky",
+    dueño: "Jere",
+    fecha: "2023-05-08",
+    hora: "16:15",
+    sintomas: "No está comiendo"
+  },{
+    mascota: "Nina",
+    dueño: "Martin",
+    fecha: "2021-08-05",
+    hora: "08:20",
+    sintomas: "Le duele la pierna"
+  },{
+    mascota: "Sifon",
+    dueño: "Flecha",
+    fecha: "2023-06-10",
+    hora: "09:24",
+    sintomas: "Duerme mucho"
+  }])
+
+  const agregarCita = (cita) => {
+    setListaCitas(listaCitas => [cita, ...listaCitas])
+  }
+  const eliminarCita = index => {
+    setListaCitas(listaCitas => listaCitas.filter((cita, i) => i !== index))
+  }
+
   return (
-    <body>
-      <div className="App">
-        <div id="root">
-          <h1>ADMINISTRADOR DE PACIENTES</h1>
-          <div class="container">
-            <div class="row">
-              <div class="one-half column">
-                <h2>Crear mi Cita</h2>
-                {/* <Formulario name1="Nombre Mascota" /> */}
-                {/* <input type="text" class="u-full-width" placeholder="Nombre Mascota" value="" /> */}
-                {/* <Formulario name1="Nombre Dueño" /> */}
-                {/* <input type="text" class="u-full-width" placeholder="Nombre Dueño" value="" /> */}
-                {/* <Formulario name1="Fecha" /> */}
-                {/* <input type="date" name="fecha" class="u-full-width" value="" /> */}
-                {/* <Formulario name1="Hora" /> */}
-                {/* <input type="time" name="hora" class="u-full-width" value="" /> */}
-                {/* <Formulario name1="Sintomas" /> */}
-                {/* <textarea name="sintomas" class="u-full-width" /> */}
-                {/* <button type="submit" class="u-full-width button-primary">Agregar Cita</button> */}
-                <FormF />
-              </div>
-              <div class="one-half column">
-                  <h2>Administra tus citas</h2>
-                  <Cita name="Blacky" user="Jere" date="2023-05-08" hora="16:15" sintomas="No está comiendo" />
-                  <Cita name="Nina" user="Martin" date="2021-08-05" hora="08:20" sintomas="Le duele la pierna" />
-                  <Cita name="Sifon" user="Flecha" date="2023-06-10" hora="09:24" sintomas="Duerme mucho" />
-                </div>
-            </div>
-          </div>
+    <>
+      <h1>ADMINISTRADOR DE PACIENTES</h1>
+      <div className="container">
+      <div className="row">
+        <div className="one-half column">
+          <h2>Crear mi Cita</h2>
+          <FormF submit={agregarCita} />
+        </div>
+        <div className="one-half column">
+          <h2>Administra tus citas</h2>
+          {
+            listaCitas.map((cita, index) => (
+              <Cita key={index} cita={cita} eliminar={() => eliminarCita(index)} />
+            ))
+          }
         </div>
       </div>
-    </body>
+    </div>
+    </>
   );
 }
 
